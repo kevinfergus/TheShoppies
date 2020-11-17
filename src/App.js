@@ -13,7 +13,6 @@ function App() {
 			.catch((error) => {
 				console.log(error);
 			});
-		console.log('RESPONSE', response.data.Search);
 		setMovieList(response.data.Search);
 	}
 	return (

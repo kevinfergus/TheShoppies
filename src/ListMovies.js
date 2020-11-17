@@ -1,13 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import MovieInfo from './MovieInfo';
+
+////maybe see if you can get back to intializing selection as an empty
+//object, probably best practice
 
 function ListMovies(props) {
-	if (props.movieList) {
+	const [ selection, setSelection ] = useState(false);
+
+	function handleClick(movie) {
+		setSelection(movie);
+	}
+
+	if (props.movieList && !selection) {
 		return props.movieList.map((movie) => (
-			<li key={movie.title}>
+			<div key={movie.title} value={movie.title} onClick={() => handleClick(movie)}>
 				{movie.Title}
 				{movie.Year}
-			</li>
+			</div>
 		));
+	} else if (selection) {
+		return <MovieInfo selection={selection} setSelection={setSelection} />;
 	} else {
 		return <div />;
 	}
