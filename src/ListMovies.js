@@ -13,7 +13,7 @@ function ListMovies(props) {
 
 	if (props.movieList && !selection) {
 		return props.movieList.map((movie) => (
-			<div key={movie.title} value={movie.title} onClick={() => handleClick(movie)}>
+			<div key={movie.imdbId} value={movie.title} onClick={() => handleClick(movie)}>
 				{movie.Title}
 				{movie.Year}
 			</div>
