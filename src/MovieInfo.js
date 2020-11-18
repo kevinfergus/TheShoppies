@@ -7,12 +7,11 @@ function MovieInfo(props) {
 
 		const response = await axios.get(`http://www.omdbapi.com/?i=${props.selection.imdbID}&apikey=52140488`);
 		props.setSelection(response.data)
-		console.log(response.data)
 
 	}
 	useEffect( () => {
 		fetchMovieInfo()
-	});
+	}, []);
 
 	const handleClick = ()=>  {
 		props.setSelection(false)
@@ -34,6 +33,9 @@ function MovieInfo(props) {
   				</tr>
   			</table>
 			<button type="button" onClick={()=>handleClick()}>Back</button>
+			<button type ="button" value="thumbs up">Thumbs Up</button>
+			<button type ="button" value="thumbs down">Thumbs Down</button>
+
 		</div>
 	)
 }

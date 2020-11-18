@@ -1,28 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
-import axios from 'axios';
 import { useState } from 'react';
 import ListMovies from './ListMovies';
+import SearchBar from './SearchBar'
 
 function App() {
 	const [ movieList, setMovieList ] = useState([]);
-
-	async function handleChange(e) {
-		const response = await axios
-			.get(`http://www.omdbapi.com/?s=${e.target.value}&i=tt3896198&apikey=52140488`)
-			.catch((error) => {
-				console.log(error);
-			});
-		setMovieList(response.data.Search);
-	}
+	const [ selection, setSelection ] = useState();
+	
 	return (
 		<div className="App">
 			<header className="App-header">
 				<img src={logo} className="App-logo" alt="logo" />
-				<form>
-					<input placeholder="title" onChange={(e) => handleChange(e)} />
-				</form>
-				<ListMovies movieList={movieList} />
+				<div>{selection? '' : <SearchBar movieList={movieList} setMovieList={setMovieList}></SearchBar>}</div>
+				<div>{movieList? <ListMovies movieList={movieList} selection={selection} setSelection={setSelection}/> : ''}</div>
+				
 			</header>
 		</div>
 	);
