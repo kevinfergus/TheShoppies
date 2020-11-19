@@ -26,6 +26,8 @@ function MovieInfo(props) {
 		const movieDocRef = db.collection("ratings").doc(title);
 		const rating = e.target.value
 
+		///wrap the set call in a function that you can call if it doesn't exist
+
 
 
 
@@ -34,10 +36,21 @@ function MovieInfo(props) {
   
     		return transaction.get(movieDocRef).then(function(movieDoc) {
        			 if (!movieDoc.exists) {
-           			 return 0
+					if(rating==="thumbsUP") 
+						{
+							movieDocRef.set({thumbsUP: 1}).then(function() {
+								console.log("Document successfully written!");
+							})
+							.catch(function(error) {
+								console.error("Error writing document: ", error);
+							});
+						}
+					if (rating ==="thumbsDOWN") {
+						movieDocRef.set({thumbsDOWN: 1})
+					}
        			 }
 
-        
+					else {
 					const newRating = movieDoc.data().thumbsUP + 1
 					console.log('new rating', newRating)
 	
@@ -47,6 +60,7 @@ function MovieInfo(props) {
 					if(rating==="thumbsDOWN") {
 						transaction.update(movieDocRef, { thumbsDOWN: newRating });
 					}
+				}
     		});
 		}).then(function() {
    		 console.log("Transaction successfully committed!");
