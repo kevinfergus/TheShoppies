@@ -24,56 +24,50 @@ function MovieInfo(props) {
 		const title= props.selection.Title
 		const movieDocRef = db.collection("ratings").doc(title);
 		const rating = e.target.value
+
+
+		let documentData
+	 movieDocRef.get().then(function(doc) {
+			if (doc.exists) {
+				documentData=doc.data()
+			} else {
+				// doc.data() will be undefined in this case
+				documentData=0
+			}
+		}).catch(function(error) {
+			console.log("Error getting document:", error);
+		});
+
+		console.log('DATA', documentData)
+
+		
+
+
 	
-		var sfDocRef = movieDocRef
-
-
-sfDocRef.set({ population: sfDocRef.population });
-
-return db.runTransaction(function(transaction) {
-    // This code may get re-run multiple times if there are conflicts.
-    return transaction.get(sfDocRef).then(function(sfDoc) {
-        if (!sfDoc.exists) {
-            throw "Document does not exist!";
-        }
-
-        // Add one person to the city population.
-        // Note: this could be done without a transaction
-        //       by updating the population using FieldValue.increment()
-        var newPopulation = sfDoc.data().population + 1;
-        transaction.update(sfDocRef, { population: newPopulation });
-    });
-}).then(function() {
-    console.log("Transaction successfully committed!");
-}).catch(function(error) {
-    console.log("Transaction failed: ", error);
-});
-
- 
-
-		// return db.runTransaction(function(transaction) {
+	
+ 		return db.runTransaction(function(transaction) {
   
-    	// 	return transaction.get(movieDocRef).then(function(movieDoc) {
-       	// 		 if (!movieDoc.exists) {
-        //    			 throw "Document does not exist!";
-       	// 		 }
+    		return transaction.get(movieDocRef).then(function(movieDoc) {
+       			 if (!movieDoc.exists) {
+           			 throw "Document does not exist!";
+       			 }
 
         
-		// 			const newRating = movieDoc.data().thumbsUP + 1
-		// 			console.log('rating', rating)
-		// 			console.log('newRating', newRating)
-		// 			if(rating==='thumbsUP') {
-		// 					transaction.update(movieDocRef, { thumbsUP: newRating });
-		// 			}
-		// 			if(rating==="thumbsDOWN") {
-		// 				transaction.update(movieDocRef, { thumbsEVEN: newRating });
-		// 			}
-    	// 	});
-		// }).then(function() {
-   		//  console.log("Transaction successfully committed!");
-		// }).catch(function(error) {
-   		//  console.log("Transaction failed: ", error);
-		// });
+					const newRating = movieDoc.data().thumbsUP + 1
+					console.log('rating', rating)
+					console.log('newRating', newRating)
+					if(rating==='thumbsUP') {
+							transaction.update(movieDocRef, { thumbsUP: newRating });
+					}
+					if(rating==="thumbsDOWN") {
+						transaction.update(movieDocRef, { thumbsEVEN: newRating });
+					}
+    		});
+		}).then(function() {
+   		 console.log("Transaction successfully committed!");
+		}).catch(function(error) {
+   		 console.log("Transaction failed: ", error);
+		});
 
 	}
 	return (
