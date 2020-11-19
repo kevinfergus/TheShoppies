@@ -1,7 +1,6 @@
 
-const firebase = require("firebase");
-// Required for side-effects
-require("firebase/firestore");
+import firebase from "firebase/app";
+import "firebase/firestore"
 const config = {
     apiKey: "AIzaSyBUKU9LrYl27C4fD4SwdVFbUFm7_B6rDXo",
     authDomain: "yearone-api-design.firebaseapp.com",

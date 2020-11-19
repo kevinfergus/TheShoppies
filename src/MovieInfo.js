@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 import {db}from './firebase'
-require("firebase/firestore");
+import firebase from "firebase/app";
+import "firebase/firestore"
 
 
 function MovieInfo(props) {
@@ -20,47 +21,31 @@ function MovieInfo(props) {
 		props.setSelection(false)
 	}
 
-	const handleThumbClick =(e) => {
+	const  handleThumbClick =async(e) => {
 		const title= props.selection.Title
 		const movieDocRef = db.collection("ratings").doc(title);
 		const rating = e.target.value
 
 
-		let documentData
-	 movieDocRef.get().then(function(doc) {
-			if (doc.exists) {
-				documentData=doc.data()
-			} else {
-				// doc.data() will be undefined in this case
-				documentData=0
-			}
-		}).catch(function(error) {
-			console.log("Error getting document:", error);
-		});
 
-		console.log('DATA', documentData)
 
 		
-
-
-	
-	
- 		return db.runTransaction(function(transaction) {
+		db.runTransaction(function(transaction) {
   
     		return transaction.get(movieDocRef).then(function(movieDoc) {
        			 if (!movieDoc.exists) {
-           			 throw "Document does not exist!";
+           			 return 0
        			 }
 
         
 					const newRating = movieDoc.data().thumbsUP + 1
-					console.log('rating', rating)
-					console.log('newRating', newRating)
+					console.log('new rating', newRating)
+	
 					if(rating==='thumbsUP') {
 							transaction.update(movieDocRef, { thumbsUP: newRating });
 					}
 					if(rating==="thumbsDOWN") {
-						transaction.update(movieDocRef, { thumbsEVEN: newRating });
+						transaction.update(movieDocRef, { thumbsDOWN: newRating });
 					}
     		});
 		}).then(function() {
@@ -68,6 +53,11 @@ function MovieInfo(props) {
 		}).catch(function(error) {
    		 console.log("Transaction failed: ", error);
 		});
+		
+
+	
+	
+
 
 	}
 	return (
