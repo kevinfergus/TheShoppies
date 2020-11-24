@@ -11,7 +11,7 @@ function ListMovies(props) {
 	return(
 		<div>
 			<div>
-				{props.selection? <MovieInfo selection={props.selection} setSelection={props.setSelection} /> : 
+				{props.selection? <MovieInfo selection={props.selection} setSelection={props.setSelection} setPic={props.setPic}/> : 
 				
 				props.movieList.map((movie) => (
 					<div key={movie.imdbId} value={movie.title} onClick={() => handleClick(movie)}>

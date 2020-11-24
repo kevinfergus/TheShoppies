@@ -3,6 +3,9 @@ import axios from 'axios';
 import {db}from './firebase'
 import firebase from "firebase/app";
 import "firebase/firestore"
+import {Button,Table, Container, Row} from 'react-bootstrap'
+import logo from './logo.svg';
+
 
 
 function MovieInfo(props) {
@@ -11,6 +14,7 @@ function MovieInfo(props) {
 
 		const response = await axios.get(`http://www.omdbapi.com/?i=${props.selection.imdbID}&apikey=52140488`);
 		props.setSelection(response.data)
+		props.setPic(response.data.Poster)
 
 	}
 	useEffect( () => {
@@ -19,13 +23,13 @@ function MovieInfo(props) {
 
 	const handleBackClick = ()=>  {
 		props.setSelection(false)
+		props.setPic(logo)
 	}
 	const createDoc = (rating, movieDocRef) => {
-		if(rating==="thumbsUP") 
+			if(rating==="thumbsUP") 
 					{
 						 movieDocRef.set({thumbsUP: 1, thumbsDOWN: 0}).then(function() {
 							console.log("Document successfully written!");
-							return 'Doc created'
 						})
 						.catch(function(error) {
 							console.error("Error writing document: ", error);
@@ -34,7 +38,7 @@ function MovieInfo(props) {
 					if (rating ==="thumbsDOWN") {
 						movieDocRef.set({thumbsUP: 0, thumbsDOWN: 1} ).then(function() {
 						   console.log("Document successfully written!");
-						   return 'Doc created'
+					
 					   }).catch(function(error) {
 						   console.error("Error writing document: ", error);
 					   });
@@ -80,7 +84,6 @@ function MovieInfo(props) {
 			if (doc.exists) {
 				docExists=true
 			} else {
-				// doc.data() will be undefined in this case
 				docExists=false
 			}
 		}).catch(function(error) {
@@ -97,8 +100,10 @@ function MovieInfo(props) {
 
 	}
 	return (
-		<div>
-			<table>  
+		<div className="col-centered">
+			<Container>
+			<Row>
+			<Table>  
 				<tr>
    					<th>Title</th>
     				<th>Director</th>
@@ -108,15 +113,23 @@ function MovieInfo(props) {
  				 </tr>
   				<tr>
 					<td>{props.selection.Title}</td>
-    				<td>${props.selection.Director}</td>
+    				<td>{props.selection.Director}</td>
 					<td>{props.selection.Year}</td>
   				</tr>
-  			</table>
-			<button type="button" onClick={()=>handleBackClick()}>Back</button>
-			<button type ="button" value="thumbsUP" onClick={(e)=>handleThumbClick(e)}>Thumbs Up</button>
-			<button type ="button" value="thumbsDOWN" onClick={(e)=>handleThumbClick(e)}>Thumbs Down</button>
+  			</Table>
+			<Button onClick={()=>handleBackClick()}>Back</Button><br></br>
+			</Row>
+			<Row>
+			<Button  value="thumbsUP" onClick={(e)=>handleThumbClick(e)}>Thumbs Up</Button>
+			<Button value="thumbsDOWN" onClick={(e)=>handleThumbClick(e)}>Thumbs Down</Button>
+			</Row>
+			</Container>
 
 		</div>
 	)
 }
+
+
+
+
 export default MovieInfo;
