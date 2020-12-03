@@ -1,11 +1,10 @@
-import logo from './logo.svg';
+import logo from './logo.png';
 import './App.css';
 import { useState } from 'react';
 import ListMovies from './ListMovies';
 import SearchBar from './SearchBar'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Container, Col, Row} from 'react-bootstrap'
-
+import React from "react"
 
 function App() {
 	const [ movieList, setMovieList ] = useState([]);
@@ -14,17 +13,10 @@ function App() {
 	
 	return (
 		<div className="App">
-			
-			<Container className={styles.center} >
-				<Row xs={5} md={10} lg={15}>
-				<Col>
-				<img src={pic} className="App-logo" alt="logo" />
+			<img src={pic} className="App-logo" alt="logo" />
 				<div>{selection? '' : <SearchBar movieList={movieList} setMovieList={setMovieList}></SearchBar>}</div>
 				<div>{movieList? <ListMovies movieList={movieList} selection={selection} setSelection={setSelection} setPic={setPic}/> : ''}</div>
-				</Col>
-				</Row>
 				
-			</Container>
 		</div>
 	);
 }

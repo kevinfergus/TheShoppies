@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 import {db}from './firebase'
-import firebase from "firebase/app";
 import "firebase/firestore"
-import {Button,Table, Container, Row} from 'react-bootstrap'
-import logo from './logo.svg';
+import {Button,Table, Row} from 'react-bootstrap'
+import logo from './logo.png';
 
 
 
@@ -101,8 +100,6 @@ function MovieInfo(props) {
 	}
 	return (
 		<div className="col-centered">
-			<Container>
-			<Row>
 			<Table>  
 				<tr>
    					<th>Title</th>
@@ -117,13 +114,12 @@ function MovieInfo(props) {
 					<td>{props.selection.Year}</td>
   				</tr>
   			</Table>
-			<Button onClick={()=>handleBackClick()}>Back</Button><br></br>
-			</Row>
-			<Row>
-			<Button  value="thumbsUP" onClick={(e)=>handleThumbClick(e)}>Thumbs Up</Button>
-			<Button value="thumbsDOWN" onClick={(e)=>handleThumbClick(e)}>Thumbs Down</Button>
-			</Row>
-			</Container>
+
+			<Button onClick={()=>handleBackClick()} className="mr-2">Back</Button>
+			<Button  value="thumbsUP" onClick={(e)=>handleThumbClick(e)} className="mr-2">Thumbs Up</Button>
+			<Button value="thumbsDOWN" onClick={(e)=>handleThumbClick(e)} className="mr-2">Thumbs Down</Button>
+			
+	
 
 		</div>
 	)
