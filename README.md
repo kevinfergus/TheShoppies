@@ -10,17 +10,28 @@ To run this project, fork and clone this repo, navigate to the created directory
 
 When a user rates a movie, a console message notes when it is persited to the database. 
 
-Checking the Cloud FireStore database
-1.Go to https://firebase.google.com/
-2. Log in using the following credentials: 
-  email: kevinfergusyearone@gmail.com
-  password: yearone123
- 3. Navigate to the YearOne API Design project (navigate to the console if you do not see a list of projects)
- 4. On the left hand side, under the Develop menu, click Cloud Firestore
- 5.Examine the ratings collection and the documents inside of it to confirm that user ratings are persisted and updated 
+
  
  
 ##
+# Checking the Cloud FireStore database
+
+
+
+
+
+1. Go to https://firebase.google.com/
+
+2. Log in using the following credentials: 
+email: kevinfergusyearone@gmail.com
+password: yearone123
+
+3. Navigate to the YearOne API Design project (navigate to the console if you do not see a list of projects)
+
+4. On the left hand side, under the Develop menu, click Cloud Firestore
+
+5. Examine the ratings collection and the documents inside of it to confirm that user ratings are persisted and updated 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
