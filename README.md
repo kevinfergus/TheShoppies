@@ -1,7 +1,7 @@
 
 Welcome to Movie Rater. This app allows users to search for movies, then give the movie a rating that will persist to a Cloud Firestore database. 
 
-Screen Shot 2020-12-04 at 12.43.15 PM
+![Screen Shot 2020-12-04 at 12 43 15 PM](https://user-images.githubusercontent.com/58534551/101203623-8e613f00-3630-11eb-8d46-5a558b8f6a1d.png)
 
 
 To run this project, fork and clone this repo, navigate to the created directory and run Yarn Start. 
