@@ -5,8 +5,6 @@ function ListMovies(props) {
 	const handleClick = (movie)=>{
 		props.setSelection(movie);
 	}
-
-	console.log(props.movieList)
 	return(
 		<div>
 			<div>
