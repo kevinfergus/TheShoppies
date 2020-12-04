@@ -12,11 +12,14 @@ function App() {
 	const[pic, setPic]=useState(logo)
 	
 	return (
+		<div className="App-header">
+			Movie Rater
 		<div className="App">
 			<img src={pic} className="App-logo" alt="logo" />
 				<div>{selection? '' : <SearchBar movieList={movieList} setMovieList={setMovieList}></SearchBar>}</div>
 				<div>{movieList? <ListMovies movieList={movieList} selection={selection} setSelection={setSelection} setPic={setPic}/> : ''}</div>
 				
+		</div>
 		</div>
 	);
 }

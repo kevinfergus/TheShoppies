@@ -4,13 +4,14 @@ import {db}from './firebase'
 import "firebase/firestore"
 import {Button,Table, Row} from 'react-bootstrap'
 import logo from './logo.png';
+import './App.css';
+
 
 
 
 function MovieInfo(props) {
 
 	const fetchMovieInfo = async() => {
-
 		const response = await axios.get(`http://www.omdbapi.com/?i=${props.selection.imdbID}&apikey=52140488`);
 		props.setSelection(response.data)
 		props.setPic(response.data.Poster)
@@ -47,11 +48,11 @@ function MovieInfo(props) {
 	const updateDoc = (rating, movieDocRef) => {
 		db.runTransaction(function(transaction) {
 			return transaction.get(movieDocRef).then(function(movieDoc) {
-
-			  if(movieDoc.exists) {
 				  let newRating
 					  if(rating==='thumbsUP') {
 						  newRating = movieDoc.data().thumbsUP + 1	
+
+						  console.log(newRating)
 
 						  transaction.update(movieDocRef, { thumbsUP: newRating });
 						  return newRating
@@ -62,9 +63,6 @@ function MovieInfo(props) {
 						  transaction.update(movieDocRef, { thumbsDOWN: newRating });
 						  return newRating
 					  }
-			  }
-			  else {
-			  }
 
 		  });
 	  }).then(function() {
@@ -78,49 +76,35 @@ function MovieInfo(props) {
 		const title= props.selection.Title
 		const movieDocRef = db.collection("ratings").doc(title);
 		const rating = e.target.value
-		let docExists 
-		movieDocRef.get().then(function(doc) {
+			movieDocRef.get().then(function(doc) {
+			console.log("doc in get", doc.exists)
 			if (doc.exists) {
-				docExists=true
+				updateDoc(rating, movieDocRef)
 			} else {
-				docExists=false
+				createDoc(rating, movieDocRef)
 			}
 		}).catch(function(error) {
 			console.log("Error getting document:", error);
 		});
-	
-	
-		if(!docExists) {
-			createDoc(rating, movieDocRef)
-		}
-		else {
-			updateDoc(rating, movieDocRef)
-		}
-
 	}
 	return (
 		<div className="col-centered">
-			<Table>  
+			<table className="Table">  
 				<tr>
    					<th>Title</th>
     				<th>Director</th>
 					<th>Year of Release</th>
-
-
- 				 </tr>
+				</tr>
   				<tr>
 					<td>{props.selection.Title}</td>
     				<td>{props.selection.Director}</td>
 					<td>{props.selection.Year}</td>
   				</tr>
-  			</Table>
-
+  			</table>
+			  <br></br>
 			<Button onClick={()=>handleBackClick()} className="mr-2">Back</Button>
 			<Button  value="thumbsUP" onClick={(e)=>handleThumbClick(e)} className="mr-2">Thumbs Up</Button>
 			<Button value="thumbsDOWN" onClick={(e)=>handleThumbClick(e)} className="mr-2">Thumbs Down</Button>
-			
-	
-
 		</div>
 	)
 }
