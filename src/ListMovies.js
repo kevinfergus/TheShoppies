@@ -9,7 +9,12 @@ function ListMovies(props) {
 	}
 	const handleNomination = (movie) => {
 		if(props.nominees.length<5) {
+			if(!props.nominees.includes(movie)){
 			props.setNominees([...props.nominees, movie])
+			}
+			else {
+				alert("You have already nominated this movie")
+			}
 		}
 		else{
 			alert("All 5 nominees used!")

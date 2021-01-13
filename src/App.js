@@ -14,15 +14,14 @@ const App = ()=> {
 	const [nominees, setNominees] =useState([])
 
 	console.log(nominees)
-	
 	return (
 		<div className="App-header">
 			The Shoppies
 		<div className="App">
 			<img src={pic} className="App-logo" alt="logo" />
 				<div>{selection? '' : <SearchBar movieList={movieList} setMovieList={setMovieList}></SearchBar>}</div>
-				<div>{movieList? <ListMovies movieList={movieList}  setSelection={setSelection} selection={selection} nominees={nominees} setPic={setPic} setNominees={setNominees}/> : ''}</div>
-				<Nominees></Nominees>
+				<div>{movieList? <ListMovies movieList={movieList}  nominees={nominees} setSelection={setSelection} selection={selection} nominees={nominees} setPic={setPic} setNominees={setNominees}/> : ''}</div>
+				<Nominees nominees={nominees} setNominees={setNominees}></Nominees>
 				
 		</div>
 		</div>
