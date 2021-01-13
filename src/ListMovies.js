@@ -4,28 +4,29 @@ import {Button} from "react-bootstrap"
 
 function ListMovies(props) {
 
-	const handleInfo= (movie)=>{
-		console.log("movie", movie)
+	const handleClick = (movie)=>{
 		props.setSelection(movie);
-		console.log("selection", props.selection)
 	}
-
-	const handleClick = (movie)=>{ 
-		console.log("movie", movie)
-		if(props.nominees.length<5) 
-			{ props.setNominees([...props.nominees, movie]) } 
-			else( alert("Nominations are full!") ) }
+	const handleNomination = (movie) => {
+		if(props.nominees.length<5) {
+			props.setNominees([...props.nominees, movie])
+		}
+		else{
+			alert("All 5 nominees used!")
+		}
+	
+	}
 	return(
 		<div>
 			<div>
-				{props.selection? <MovieInfo selection={props.selection} setSelection={props.setSelection} setPic={props.setPic} handleInfo={handleInfo}/> : 
+				{props.selection? <MovieInfo selection={props.selection} handleNomination={handleNomination} setSelection={props.setSelection} setPic={props.setPic}/> : 
 					props.movieList.map((movie) => (
 					<div key={movie.imdbId} value={movie.title}>
 						<div className="font-weight-bold">{movie.Title}</div>
 						{movie.Year}
 						<br></br>
-						<Button className="btn primary mr-1" onClick={(movie)=>handleInfo(movie)}>More</Button>
-						<Button className="btn primary mr-1" onClick={(movie)=>handleClick(movie)}>Nominate</Button>
+						<Button onClick={() => handleClick(movie)} className="btn primary mr-1">More</Button>
+						<Button className="btn primary mr-1" onClick={()=>handleNomination(movie)}>Nominate</Button>
 					</div>
 				))}
 			</div>

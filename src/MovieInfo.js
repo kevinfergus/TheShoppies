@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import axios from 'axios';
-import {Button} from 'react-bootstrap'
+import {Button,Table, Row} from 'react-bootstrap'
 import logo from './logo.png';
 import './App.css';
 
@@ -43,7 +43,10 @@ const MovieInfo = (props) => {
 				   }
 	}
 
-	console.log(props.selection)
+
+	const  handleThumbClick =(e) => {
+	
+	}
 	return (
 		<div className="col-centered">
 			<table className="Table">  
@@ -60,7 +63,7 @@ const MovieInfo = (props) => {
   			</table>
 			  <br></br>
 			<Button onClick={()=>handleBackClick()} className="mr-2">Back</Button>
-			<Button  value="thumbsUP" onClick={props.handleInfo(props.selection)} className="mr-2">Nominate</Button>
+			<Button  value="thumbsUP" onClick={()=>props.handleNomination(props.selection)} className="mr-2">Nominate</Button>
 		</div>
 	)
 }
