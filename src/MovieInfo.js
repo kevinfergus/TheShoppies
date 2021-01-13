@@ -1,15 +1,13 @@
 import { useEffect } from 'react';
 import axios from 'axios';
-import {db}from './firebase'
-import "firebase/firestore"
-import {Button,Table, Row} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 import logo from './logo.png';
 import './App.css';
 
 
 
 
-function MovieInfo(props) {
+const MovieInfo = (props) => {
 
 	const fetchMovieInfo = async() => {
 		const response = await axios.get(`http://www.omdbapi.com/?i=${props.selection.imdbID}&apikey=52140488`);
@@ -45,48 +43,7 @@ function MovieInfo(props) {
 				   }
 	}
 
-	const updateDoc = (rating, movieDocRef) => {
-		db.runTransaction(function(transaction) {
-			return transaction.get(movieDocRef).then(function(movieDoc) {
-				  let newRating
-					  if(rating==='thumbsUP') {
-						  newRating = movieDoc.data().thumbsUP + 1	
-
-						  console.log(newRating)
-
-						  transaction.update(movieDocRef, { thumbsUP: newRating });
-						  return newRating
-					  }
-					  if(rating==="thumbsDOWN") {
-						  newRating = movieDoc.data().thumbsDOWN + 1	
-
-						  transaction.update(movieDocRef, { thumbsDOWN: newRating });
-						  return newRating
-					  }
-
-		  });
-	  }).then(function() {
-		  console.log("Transaction successfully committed!");
-	  }).catch(function(error) {
-		  console.log("Transaction failed: ", error);
-	  })
-	}
-
-	const  handleThumbClick =(e) => {
-		const title= props.selection.Title
-		const movieDocRef = db.collection("ratings").doc(title);
-		const rating = e.target.value
-			movieDocRef.get().then(function(doc) {
-			console.log("doc in get", doc.exists)
-			if (doc.exists) {
-				updateDoc(rating, movieDocRef)
-			} else {
-				createDoc(rating, movieDocRef)
-			}
-		}).catch(function(error) {
-			console.log("Error getting document:", error);
-		});
-	}
+	console.log(props.selection)
 	return (
 		<div className="col-centered">
 			<table className="Table">  
@@ -103,8 +60,7 @@ function MovieInfo(props) {
   			</table>
 			  <br></br>
 			<Button onClick={()=>handleBackClick()} className="mr-2">Back</Button>
-			<Button  value="thumbsUP" onClick={(e)=>handleThumbClick(e)} className="mr-2">Thumbs Up</Button>
-			<Button value="thumbsDOWN" onClick={(e)=>handleThumbClick(e)} className="mr-2">Thumbs Down</Button>
+			<Button  value="thumbsUP" onClick={props.handleInfo(props.selection)} className="mr-2">Nominate</Button>
 		</div>
 	)
 }

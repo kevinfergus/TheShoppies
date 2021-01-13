@@ -3,21 +3,26 @@ import './App.css';
 import { useState } from 'react';
 import ListMovies from './ListMovies';
 import SearchBar from './SearchBar'
+import Nominees from './Nominees'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react"
 
-function App() {
+const App = ()=> {
 	const [ movieList, setMovieList ] = useState([]);
 	const [ selection, setSelection ] = useState();
 	const[pic, setPic]=useState(logo)
+	const [nominees, setNominees] =useState([])
+
+	console.log(nominees)
 	
 	return (
 		<div className="App-header">
-			Movie Rater
+			The Shoppies
 		<div className="App">
 			<img src={pic} className="App-logo" alt="logo" />
 				<div>{selection? '' : <SearchBar movieList={movieList} setMovieList={setMovieList}></SearchBar>}</div>
-				<div>{movieList? <ListMovies movieList={movieList} selection={selection} setSelection={setSelection} setPic={setPic}/> : ''}</div>
+				<div>{movieList? <ListMovies movieList={movieList}  setSelection={setSelection} selection={selection} nominees={nominees} setPic={setPic} setNominees={setNominees}/> : ''}</div>
+				<Nominees></Nominees>
 				
 		</div>
 		</div>
