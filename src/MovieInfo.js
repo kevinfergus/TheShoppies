@@ -25,30 +25,7 @@ const MovieInfo = (props) => {
 		props.setSelection(false)
 		props.setPic(logo)
 	}
-	const createDoc = (rating, movieDocRef) => {
-			if(rating==="thumbsUP") 
-					{
-						 movieDocRef.set({thumbsUP: 1, thumbsDOWN: 0}).then(function() {
-							console.log("Document successfully written!");
-						})
-						.catch(function(error) {
-							console.error("Error writing document: ", error);
-						});
-					}
-					if (rating ==="thumbsDOWN") {
-						movieDocRef.set({thumbsUP: 0, thumbsDOWN: 1} ).then(function() {
-						   console.log("Document successfully written!");
-					
-					   }).catch(function(error) {
-						   console.error("Error writing document: ", error);
-					   });
-				   }
-	}
 
-
-	const  handleThumbClick =(e) => {
-	
-	}
 	return (
 		<div className="col-centered">
 			<table className="Table">  
