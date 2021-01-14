@@ -8,7 +8,7 @@ import React from 'react';
 const MovieInfo = (props) => {
 
 	const fetchMovieInfo = async() => {
-		const response = await axios.get(`http://www.omdbapi.com/?i=${props.selection.imdbID}&apikey=52140488`);
+		const response = await axios.get(`https://www.omdbapi.com/?i=${props.selection.imdbID}&apikey=52140488`);
 		props.setSelection(response.data)
 		props.setPic(response.data.Poster)
 
