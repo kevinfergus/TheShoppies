@@ -4,7 +4,7 @@ Welcome to The Shoppies.
 See a deployed version at https://main.dsdx2l29rn9db.amplifyapp.com/
 
 
-To run this project, fork and clone this rep and run Yarn Start. 
+To run this project, fork and clone this repo and run Yarn Start. 
 
 
 
