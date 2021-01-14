@@ -1,4 +1,8 @@
 import {Card, Button} from 'react-bootstrap';
+import React from 'react';
+import './App.css';
+
+
 
 const Nominees = (props) => {
 
@@ -9,14 +13,21 @@ const handleDelete = (nominee) => {
 }
 return (<div>
 
-<Card style={{ width: '18rem' }}>
+<Card className="Card">
+    <Card.Header className="Card-Body">Your Nominees</Card.Header>
   <Card.Body>
-    <Card.Title>Nominees</Card.Title>
-    <Card.Text>
+    <Card.Text className="Card-Body Text"> 
+    <table className="Card-Text">
     {props.nominees.map((movie, index) => (
-    <div key={index}><div className="font-weight-bold">{movie.Title}</div>
-    {movie.Year} <Button onClick={()=>handleDelete(movie)}>Remove</Button></div>
-))}
+    <tr>
+        <div key={index} className="Card-Body"><div className="font-weight-bold"> <td>{movie.Title}</td> 
+            <td> {movie.Year}</td> 
+            <td><Button onClick={()=>handleDelete(movie)}>Remove</Button></td> </div>
+        </div>
+     </tr>
+    
+     
+))}</table>
     </Card.Text>
   </Card.Body>
 </Card>

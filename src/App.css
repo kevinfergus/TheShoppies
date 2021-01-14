@@ -1,6 +1,7 @@
 .App {
+	display: flex;
+	flex-direction: column;
 	text-align: center;
-	font-size: calc(6px + 1.2vmin);
 }
 
 .App-logo {
@@ -19,17 +20,22 @@
 .App-link {
 	color: #61dafb;
 }
-
-@keyframes App-logo-spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
+.Card {
+	width: calc(50vmin);
+}
+.Card-Body {
+	text-align: center;
+	width: 100%;
+	padding: 3px;
 }
 
+.Card-Text {
+	font-size: calc(1.5vmin);
+	text-align: left;
+}
 .Table {
 	margin: auto;
-	width: 50%;
+	padding: 5px;
+	width: 33%;
+	font-size: calc(1.5vmin);
 }
