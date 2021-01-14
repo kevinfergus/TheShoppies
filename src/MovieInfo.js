@@ -5,8 +5,6 @@ import logo from './logo.png';
 import './App.css';
 import React from 'react';
 
-
-
 const MovieInfo = (props) => {
 
 	const fetchMovieInfo = async() => {

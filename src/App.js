@@ -16,27 +16,27 @@ const App = ()=> {
 
 	console.log(nominees)
 	return (
-		<div>
+	
 		<Container fluid>
 	
 		<div className="App-header">
+			<Row className="App-header">
 			The Shoppies
-		<Row>
-		
-		<div className="App">
-			<Col>
 			<img src={pic} className="App-logo" alt="logo" />
+			<Nominees nominees={nominees} setNominees={setNominees}></Nominees>
+			</Row>
+		
+	
+			<Row className="App">
 				<div>{selection? '' : <SearchBar movieList={movieList} setMovieList={setMovieList}></SearchBar>}</div>
 				<div>{movieList? <ListMovies movieList={movieList}  nominees={nominees} setSelection={setSelection} selection={selection} nominees={nominees} setPic={setPic} setNominees={setNominees}/> : ''}</div>
-				</Col>
+			</Row>			
+			</div>
+		</Container>		
+	
+	
+	
 
-			<Col><Nominees nominees={nominees} setNominees={setNominees}></Nominees> </Col>	
-				
-		</div>
-		</Row>
-		</div>
-	</Container>
-	</div>
 	);
 }
 
