@@ -13,8 +13,8 @@ const App = ()=> {
 	const [ selection, setSelection ] = useState();
 	const[pic, setPic]=useState(logo)
 	const [nominees, setNominees] =useState([])
-
-	console.log(nominees)
+	const [submitted, setSubmitted] = useState(false)
+	console.log(submitted)
 	return (
 	
 		<Container fluid>
@@ -23,12 +23,12 @@ const App = ()=> {
 			<Row className="App-header">
 			The Shoppies
 			<img src={pic} className="App-logo" alt="logo"/>
-			<Nominees nominees={nominees} setNominees={setNominees}></Nominees>
+			<Nominees nominees={nominees} setNominees={setNominees} setMovieList={setMovieList} submitted={submitted} setSubmitted={setSubmitted}></Nominees>
 			</Row>
 		
 	
 			<Row className="App Text" style={{width: window.innerWidth}}>
-				<div>{selection? '' : <SearchBar movieList={movieList} setMovieList={setMovieList}></SearchBar>}</div>
+				<div>{selection || submitted? '' : <SearchBar movieList={movieList} setMovieList={setMovieList}></SearchBar>}</div>
 				<div>{movieList? <ListMovies movieList={movieList}  nominees={nominees} setSelection={setSelection} selection={selection} nominees={nominees} setPic={setPic} setNominees={setNominees}/> : ''}</div>
 			</Row>			
 			</div>
