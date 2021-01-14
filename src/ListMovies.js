@@ -21,7 +21,7 @@ function ListMovies(props) {
 	return(
 		<div>
 			<div>
-				{props.selection? <MovieInfo selection={props.selection} handleNomination={handleNomination} setSelection={props.setSelection} setPic={props.setPic}/> : 
+				{props.selection? <MovieInfo selection={props.selection} handleNomination={handleNomination} setSelection={props.setSelection} setPic={props.setPic} nominees={props.nominees}/> : 
 					props.movieList.map((movie) => (
 					<div key={movie.imdbId} value={movie.title}>
 						<div className="font-weight-bold">{movie.Title}</div>

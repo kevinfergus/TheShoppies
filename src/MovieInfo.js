@@ -7,8 +7,6 @@ import React from 'react';
 
 
 
-
-
 const MovieInfo = (props) => {
 
 	const fetchMovieInfo = async() => {
@@ -26,6 +24,8 @@ const MovieInfo = (props) => {
 		props.setPic(logo)
 	}
 
+	console.log(props.nominees)
+
 	return (
 		<div className="col-centered">
 			<table className="Table">  
@@ -42,8 +42,8 @@ const MovieInfo = (props) => {
   			</table>
 			  <br></br>
 			<Button onClick={()=>handleBackClick()} className="mr-2">Back</Button>
-			<Button  value="thumbsUP" onClick={()=>props.handleNomination(props.selection)} className="mr-2">Nominate</Button>
-		</div>
+			{props.nominees.includes(props.selection)? <Button className="btn primary mr-1" disabled>Nominate</Button> :
+			<Button className="btn primary mr-1" onClick={()=>props.handleNomination(props.selection)}>Nominate</Button>}			</div>
 	)
 }
 

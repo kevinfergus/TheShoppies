@@ -1,4 +1,6 @@
 .App {
+	display: flex;
+	flex-direction: column;
 	text-align: center;
 	font-size: calc(6px + 1.2vmin);
 }
