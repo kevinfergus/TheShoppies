@@ -29,7 +29,7 @@ const App = ()=> {
 	
 			<Row className="App Text" style={{width: window.innerWidth}}>
 				<div>{selection || submitted? '' : <SearchBar movieList={movieList} setMovieList={setMovieList}></SearchBar>}</div>
-				<div>{movieList? <ListMovies movieList={movieList}  nominees={nominees} setSelection={setSelection} selection={selection} nominees={nominees} setPic={setPic} setNominees={setNominees}/> : ''}</div>
+				<div>{movieList && !submitted? <ListMovies movieList={movieList}  nominees={nominees} setSelection={setSelection} selection={selection} nominees={nominees} setPic={setPic} setNominees={setNominees}/> : ''}</div>
 			</Row>			
 			</div>
 		</Container>		
