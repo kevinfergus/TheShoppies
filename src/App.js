@@ -27,11 +27,6 @@ const App = ()=> {
 		</div>
 	);
 }
-const styles = {
-	center: {
-	  marginLeft: "auto",
-	  marginRight: "auto"
-	}
-  }
+
 
 export default App;
