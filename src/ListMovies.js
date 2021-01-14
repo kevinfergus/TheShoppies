@@ -1,20 +1,17 @@
 import MovieInfo from './MovieInfo';
 import {Button} from "react-bootstrap"
 
-
 function ListMovies(props) {
+
 
 	const handleClick = (movie)=>{
 		props.setSelection(movie);
 	}
 	const handleNomination = (movie) => {
 		if(props.nominees.length<5) {
-			if(!props.nominees.includes(movie)){
 			props.setNominees([...props.nominees, movie])
-			}
-			else {
-				alert("You have already nominated this movie")
-			}
+
+		
 		}
 		else{
 			alert("All 5 nominees used!")
@@ -31,7 +28,8 @@ function ListMovies(props) {
 						{movie.Year}
 						<br></br>
 						<Button onClick={() => handleClick(movie)} className="btn primary mr-1">More</Button>
-						<Button className="btn primary mr-1" onClick={()=>handleNomination(movie)}>Nominate</Button>
+						{props.nominees.includes(movie)? <Button className="btn primary mr-1" disabled onClick={()=>handleNomination(movie)}>Nominate</Button> :
+						 <Button className="btn primary mr-1" onClick={()=>handleNomination(movie)}>Nominate</Button>}
 					</div>
 				))}
 			</div>

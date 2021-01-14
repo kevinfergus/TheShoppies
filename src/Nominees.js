@@ -1,4 +1,6 @@
 import {Card, Button} from 'react-bootstrap';
+import React from 'react';
+
 
 const Nominees = (props) => {
 

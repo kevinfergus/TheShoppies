@@ -1,6 +1,8 @@
 import axios from 'axios';
 import {Button} from "react-bootstrap"
 import {useState} from 'react'
+import React from 'react';
+
 
 function SearchBar(props) {
 	const [searchTerm, setSearchTerm]= useState('')

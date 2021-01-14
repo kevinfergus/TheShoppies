@@ -5,7 +5,7 @@ import ListMovies from './ListMovies';
 import SearchBar from './SearchBar'
 import Nominees from './Nominees'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from "react"
+import React from 'react';
 
 const App = ()=> {
 	const [ movieList, setMovieList ] = useState([]);
