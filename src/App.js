@@ -27,7 +27,7 @@ const App = ()=> {
 			</Row>
 		
 	
-			<Row className="App" style={{width: window.innerWidth}}>
+			<Row className="App Text" style={{width: window.innerWidth}}>
 				<div>{selection? '' : <SearchBar movieList={movieList} setMovieList={setMovieList}></SearchBar>}</div>
 				<div>{movieList? <ListMovies movieList={movieList}  nominees={nominees} setSelection={setSelection} selection={selection} nominees={nominees} setPic={setPic} setNominees={setNominees}/> : ''}</div>
 			</Row>			
