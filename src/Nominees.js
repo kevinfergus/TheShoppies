@@ -11,10 +11,10 @@ const handleDelete = (nominee) => {
 }
 return (<div>
 
-<Card style={{ width: '18rem' }}>
+<Card style={{ width: window.innerWidth/3}}>
+    <Card.Header style={{textAlign: "center"}}>Nominees</Card.Header>
   <Card.Body>
-    <Card.Title>Nominees</Card.Title>
-    <Card.Text>
+    <Card.Text style={{textAlign: 'center', width: "100%"}}> 
     {props.nominees.map((movie, index) => (
     <div key={index}><div className="font-weight-bold">{movie.Title}</div>
     {movie.Year} <Button onClick={()=>handleDelete(movie)}>Remove</Button></div>

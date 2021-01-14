@@ -22,12 +22,12 @@ const App = ()=> {
 		<div className="App-header">
 			<Row className="App-header">
 			The Shoppies
-			<img src={pic} className="App-logo" alt="logo" />
+			<img src={pic} className="App-logo" alt="logo"/>
 			<Nominees nominees={nominees} setNominees={setNominees}></Nominees>
 			</Row>
 		
 	
-			<Row className="App">
+			<Row className="App" style={{width: window.innerWidth}}>
 				<div>{selection? '' : <SearchBar movieList={movieList} setMovieList={setMovieList}></SearchBar>}</div>
 				<div>{movieList? <ListMovies movieList={movieList}  nominees={nominees} setSelection={setSelection} selection={selection} nominees={nominees} setPic={setPic} setNominees={setNominees}/> : ''}</div>
 			</Row>			
