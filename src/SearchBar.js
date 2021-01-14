@@ -10,7 +10,7 @@ function SearchBar(props) {
 	const handleChange = async(e) =>{
 		setSearchTerm(e.target.value)
 		const response = await axios
-			.get(`http://www.omdbapi.com/?s=${e.target.value}&i=tt3896198&apikey=52140488&type=movie`)
+			.get(`https://www.omdbapi.com/?s=${e.target.value}&i=tt3896198&apikey=52140488&type=movie`)
 			.catch((error) => {
 				console.log(error);
 			});
